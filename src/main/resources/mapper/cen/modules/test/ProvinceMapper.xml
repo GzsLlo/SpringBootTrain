@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coocle.vehicletest.mapper.cen.modules.test.ProvinceMapper">
+
+  <resultMap id="provinceMapper" type="com.coocle.vehicletest.entity.modules.test.Province">
+    <result column="PROVINCE_CODE" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="PROVINCE_NAME" property="provinceName" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="province_all_columns">
+    PROVINCE_CODE,PROVINCE_NAME,START_DATE
+  </sql>
+
+  <select id="selectProvinceByProvinceCode" parameterType="string" resultMap="provinceMapper">
+    SELECT
+      <include refid="province_all_columns"/>
+    FROM
+      TD_M_PROVINCE
+    WHERE
+      PROVINCE_CODE = #{provinceCode}
+  </select>
+
+</mapper>

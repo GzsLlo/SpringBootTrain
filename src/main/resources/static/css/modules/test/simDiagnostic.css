@@ -1,0 +1,164 @@
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+/*Clean Float*/
+.clearfix{
+  clear: both;
+}
+/*Font Size*/
+.fontSize{
+  font-size:110%;
+}
+/*Font Color*/
+.pending{
+  color: #a0a0a0;
+}
+.failed{
+  color:#c43100;
+}
+.passed{
+  color:#50a92b;
+}
+
+.warning{
+  color:#e3b708;
+}
+
+.status-txt{
+  font-weight: bold;
+  font-size:130%;
+  margin-left: 50%;
+}
+
+.diag-items{
+  margin-bottom:10px;
+  border:1px solid #ccc;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  border-radius: 4px;
+}
+.diag-items .diag-item-panel{
+  height: 70px;
+  line-height: 70px;
+  border-bottom: 1px solid #ccc;
+}
+.diag-items .config-msg,.diag-items .device-msg,.diag-items .ipOrInternet-msg,.diag-items .internetConnection-msg{
+  height: 90px;
+  overflow: scroll;
+}
+.border-right{
+  border-right: 1px solid #ccc;
+}
+
+.diagnosticTitle{
+  float: left;
+  width:30%;
+  color: #4e6888;
+  margin-left: 5%;
+  font-weight: bold;
+  font-size:130%;
+}
+
+.config-desc,.device-desc,.ipOrInternet-desc,.internetConnection-desc{
+  float: left;
+  width:64%;
+}
+
+.gradientBgd{
+  /*此处缺少一个针对IE浏览器的背景图片，需要后期添加*/
+  background: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #e6e6e6), color-stop(100%, #ffffff));
+  background: -webkit-linear-gradient(bottom, #e6e6e6, #ffffff);
+  background: -moz-linear-gradient(bottom, #e6e6e6, #ffffff);
+  background: linear-gradient(bottom, #e6e6e6, #ffffff);
+}
+/*Configuration Icon*/
+.config .icon .icon-base{
+  background: url("../../../img/modules/test/diagnostics-icons-sprite.png") no-repeat -10px -10px;
+  width:45px;
+  height: 45px;
+  position: relative;
+  top:12px;
+  float: left;
+}
+.back-color {
+  background-color: #F5F6F8;
+}
+
+/*Device Icon*/
+.device .icon .icon-base{
+  background: url("../../../img/modules/test/diagnostics-icons-sprite.png") no-repeat -66px -10px;
+  width:45px;
+  height: 45px;
+  position: relative;
+  top:12px;
+  float: left;
+}
+
+/*Internet connection Icon*/
+.internetConnection .icon .icon-base{
+  background: url("../../../img/modules/test/diagnostics-icons-sprite.png") no-repeat -120px -10px;
+  width:45px;
+  height: 45px;
+  position: relative;
+  top:12px;
+  float: left;
+}
+
+/*IP or Internet connection Icon*/
+.ipOrInternet .icon .icon-base{
+  background: url("../../../img/modules/test/diagnostics-icons-sprite.png") no-repeat -175px -10px;
+  width:45px;
+  height: 45px;
+  position: relative;
+  top:12px;
+  float: left;
+}
+
+/*失败图标*/
+.fialedIcon{
+  position: absolute;
+  background: url("../../../img/modules/test/diagnostics-icons-sprite.png") no-repeat -58px -66px;
+  width: 33px;
+  height: 33px;
+  right: -17px;
+  top: -10px;
+}
+/*准备图标*/
+.readyIcon{
+  position: absolute;
+  background: url("../../../img/modules/test/diagnostics-icons-sprite.png") no-repeat -144px -66px;
+  width: 33px;
+  height: 33px;
+  right: -17px;
+  top: -10px;
+}
+/*成功图标*/
+.successIcon{
+  position: absolute;
+  background: url("../../../img/modules/test/diagnostics-icons-sprite.png") no-repeat -15px -66px;
+  width: 33px;
+  height: 33px;
+  right: -17px;
+  top: -10px;
+}
+
+/*警告图标*/
+.warningIcon{
+  position: absolute;
+  background: url("../../../img/modules/test/diagnostics-icons-sprite.png") no-repeat -101px -66px;
+  width: 33px;
+  height: 33px;
+  right: -17px;
+  top: -10px;
+}
+
+/*内部错误图标*/
+.internalErrorIcon{
+  position: absolute;
+  background: url("../../../img/modules/test/diagnostics-icons-sprite.png") no-repeat -187px -66px;
+  width: 33px;
+  height: 33px;
+  right: -17px;
+  top: -10px;
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coocle.vehicletest.mapper.cen.modules.test.RolePermissionMapper">
+
+  <resultMap id="rolePermissionMapper" type="com.coocle.vehicletest.entity.modules.test.RolePermission">
+    <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
+    <result column="PERMISSION_CODE" property="permissionCode" jdbcType="VARCHAR" />
+    <result column="PERMISSION_TYPE" property="permissionType" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="VARCHAR" />
+    <result column="END_DATE" property="endDate" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="rolePermission_all_columns">
+    ROLE_CODE,PERMISSION_CODE,PERMISSION_TYPE,START_DATE,END_DATE
+  </sql>
+
+  <select id="selectRolePermissionByRoleCode" parameterType="string" resultMap="rolePermissionMapper">
+    SELECT
+      <include refid="rolePermission_all_columns"/>
+    FROM
+      TD_M_ROLEPERMISSION
+    WHERE
+      ROLE_CODE = #{roleCode}
+  </select>
+
+  <!-- useGeneratedKeys主键自增, keyColumn自增的主键, keyProperty主键对应的对象属性 设置后可获取插入的主键值-->
+  <insert id="insertRolePermission" parameterType="com.coocle.vehicletest.entity.modules.test.RolePermission">
+        INSERT INTO
+          TD_M_ROLEPERMISSION
+          (<include refid="rolePermission_all_columns"/>,UPDATE_USER_NAME,UPDATE_TIME)
+        VALUES
+          (#{roleCode},#{permissionCode},#{permissionType},#{startDate},#{endDate},'admin',
+          <![CDATA[
+            NOW()
+          ]]>)
+  </insert>
+
+  <update id="updateRolePermission" parameterType="com.coocle.vehicletest.entity.modules.test.RolePermission" >
+    UPDATE
+      TD_M_ROLEPERMISSION
+    SET
+      <if test="endDate != null">END_DATE = #{endDate},</if>
+      UPDATE_TIME = <![CDATA[NOW()]]>,
+      UPDATE_USER_NAME = 'coocle'
+    WHERE
+      ROLE_CODE = #{roleCode}
+    AND
+      PERMISSION_CODE = #{permissionCode}
+  </update>
+
+  <delete id="deleteRolePermission" parameterType="com.coocle.vehicletest.entity.modules.test.RolePermission" >
+    DELETE FROM
+      TD_M_ROLEPERMISSION
+    WHERE
+      ROLE_CODE = #{roleCode}
+    AND
+      PERMISSION_CODE = #{permissionCode}
+  </delete>
+
+</mapper>

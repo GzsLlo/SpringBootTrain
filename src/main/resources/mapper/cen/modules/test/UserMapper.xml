@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coocle.vehicletest.mapper.cen.modules.test.UserMapper">
+
+  <!-- ==============================================一对一,一对多=================================================== -->
+  <!-- 一:关联查询(一个一对一关系,一个一对多关系，用一条sql关联查询) -->
+  <!--<resultMap id="userMapper" type="com.coocle.vehicletest.entity.modules.test.User" >
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="USER_START_DATE" property="startDate" jdbcType="VARCHAR" />
+    <result column="ACCT_ID" property="acctId" jdbcType="VARCHAR" />
+    <association property="province" javaType="com.coocle.vehicletest.entity.modules.test.Province" select="" column="">
+      <result column="PROVINCE_CODE" property="provinceCode" jdbcType="VARCHAR" />
+      <result column="PROVINCE_NAME" property="provinceName" jdbcType="VARCHAR" />
+      <result column="PROVINCE_START_DATE" property="startDate" jdbcType="VARCHAR" />
+    </association>
+    <collection property="rolePermissions" ofType="com.coocle.vehicletest.entity.modules.test.RolePermission">
+      <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
+      <result column="PERMISSION_CODE" property="permissionCode" jdbcType="VARCHAR" />
+      <result column="PERMISSION_TYPE" property="permissionType" jdbcType="VARCHAR" />
+      <result column="PERMISSION_START_DATE" property="startDate" jdbcType="VARCHAR" />
+      <result column="END_DATE" property="endDate" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+
+  <sql id="user_all_columns">
+    USER_NAME,A.PHONE,PASSWORD,A.START_DATE USER_START_DATE,ACCT_ID,
+    B.PROVINCE_CODE,B.PROVINCE_NAME,B.START_DATE PROVINCE_START_DATE,
+    C.ROLE_CODE,C.PERMISSION_CODE,C.PERMISSION_TYPE,C.START_DATE PERMISSION_START_DATE,C.END_DATE
+  </sql>
+
+  <select id="selectUserByUsernameAndPassword" parameterType="string" resultMap="userMapper">
+    SELECT
+      <include refid="user_all_columns"/>
+    FROM
+      TD_M_USER A
+    JOIN
+      TD_M_PROVINCE B ON A.PROVINCE_CODE = B.PROVINCE_CODE
+    JOIN
+      TD_M_ROLEPERMISSION C ON A.USER_NAME = C.ROLE_CODE
+    where
+      USER_NAME = #{acctName}
+  </select>-->
+
+   <!--二:分多次查询(一个一对一关系,一个一对多关系,分别用三条单表查询) -->
+  <resultMap id="userMapper" type="com.coocle.vehicletest.entity.modules.test.User" >
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="USER_START_DATE" property="startDate" jdbcType="VARCHAR" />
+    <result column="ACCT_ID" property="acctId" jdbcType="VARCHAR" />
+    <association property="province" javaType="com.coocle.vehicletest.entity.modules.test.Province"
+                 select="com.coocle.vehicletest.mapper.cen.modules.test.ProvinceMapper.selectProvinceByProvinceCode"
+                 column="PROVINCE_CODE">
+    </association>
+    <collection property="rolePermissions" ofType="com.coocle.vehicletest.entity.modules.test.RolePermission"
+                select="com.coocle.vehicletest.mapper.cen.modules.test.RolePermissionMapper.selectRolePermissionByRoleCode"
+                column="USER_NAME">
+    </collection>
+  </resultMap>
+
+  <sql id="user_all_columns">
+    USER_NAME,PROVINCE_CODE,PHONE,PASSWORD,START_DATE USER_START_DATE,ACCT_ID
+  </sql>
+
+  <select id="selectUserByUsernameAndPassword" parameterType="string" resultMap="userMapper">
+    SELECT
+      <include refid="user_all_columns"/>
+    FROM
+      TD_M_USER
+    where
+      USER_NAME = #{acctName}
+  </select>
+  <!-- ==============================================一对一,一对多=================================================== -->
+
+  <select id="selectUsersByAcctName" resultMap="userMapper">
+    SELECT
+      <include refid="user_all_columns"/>
+    FROM
+      TD_M_USER
+    WHERE
+      USER_NAME IN
+    <foreach collection="list" item="user_name" index="index" open="(" close=")" separator=",">
+        #{user_name}
+    </foreach>
+  </select>
+
+</mapper>
