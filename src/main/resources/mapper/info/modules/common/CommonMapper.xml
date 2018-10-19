@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.coocle.vehicletest.mapper.info.modules.common.CommonMapper">
+<mapper namespace="com.coocle.springboot.mapper.info.modules.common.CommonMapper">
 
   <select id="selectNow" resultType="java.lang.String">
     SELECT

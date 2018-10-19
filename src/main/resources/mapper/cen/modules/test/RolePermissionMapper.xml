@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.coocle.vehicletest.mapper.cen.modules.test.RolePermissionMapper">
+<mapper namespace="com.coocle.springboot.mapper.cen.modules.test.RolePermissionMapper">
 
-  <resultMap id="rolePermissionMapper" type="com.coocle.vehicletest.entity.modules.test.RolePermission">
+  <resultMap id="rolePermissionMapper" type="com.coocle.springboot.entity.modules.test.RolePermission">
     <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
     <result column="PERMISSION_CODE" property="permissionCode" jdbcType="VARCHAR" />
     <result column="PERMISSION_TYPE" property="permissionType" jdbcType="VARCHAR" />
@@ -24,7 +24,7 @@
   </select>
 
   <!-- useGeneratedKeys主键自增, keyColumn自增的主键, keyProperty主键对应的对象属性 设置后可获取插入的主键值-->
-  <insert id="insertRolePermission" parameterType="com.coocle.vehicletest.entity.modules.test.RolePermission">
+  <insert id="insertRolePermission" parameterType="com.coocle.springboot.entity.modules.test.RolePermission">
         INSERT INTO
           TD_M_ROLEPERMISSION
           (<include refid="rolePermission_all_columns"/>,UPDATE_USER_NAME,UPDATE_TIME)
@@ -35,7 +35,7 @@
           ]]>)
   </insert>
 
-  <update id="updateRolePermission" parameterType="com.coocle.vehicletest.entity.modules.test.RolePermission" >
+  <update id="updateRolePermission" parameterType="com.coocle.springboot.entity.modules.test.RolePermission" >
     UPDATE
       TD_M_ROLEPERMISSION
     SET
@@ -48,7 +48,7 @@
       PERMISSION_CODE = #{permissionCode}
   </update>
 
-  <delete id="deleteRolePermission" parameterType="com.coocle.vehicletest.entity.modules.test.RolePermission" >
+  <delete id="deleteRolePermission" parameterType="com.coocle.springboot.entity.modules.test.RolePermission" >
     DELETE FROM
       TD_M_ROLEPERMISSION
     WHERE
