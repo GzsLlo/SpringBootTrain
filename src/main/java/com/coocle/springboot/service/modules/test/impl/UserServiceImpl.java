@@ -23,7 +23,6 @@ public class UserServiceImpl implements UserService {
 
   private Logger logger = LoggerFactory.getLogger(getClass());
 
-
   /**
    * 根据用户名获取用户.
    *
