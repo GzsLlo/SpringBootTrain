@@ -56,13 +56,25 @@
       <artifactId>spring-boot-starter-freemarker</artifactId>
     </dependency>
 
-    <!-- redis -->
+     <!--redis-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-redis</artifactId>
       <version>1.4.7.RELEASE</version>
     </dependency>
-    <!-- redis -->
+     <!--redis-->
+
+    <!-- Spring Boot Data Cache 依赖 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-cache</artifactId>
+    </dependency>
+
+    <!-- Spring Boot Data Redis 依赖 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
 
     <!-- Spring Boot Dubbo 依赖 -->
     <dependency>

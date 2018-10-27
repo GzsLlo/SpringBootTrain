@@ -53,7 +53,7 @@ public class LoginController {
     deleteRolePermission();
     addRolePermission();
     modifyRolePermission();
-//    testRedis();
+    testRedis();
 
     Map params = new HashMap();
     params.put("iccid", "iccid不存在");
@@ -139,43 +139,8 @@ public class LoginController {
   private void testRedis() {
     RedisUtils.setString("userName", "coocle");
     logger.debug("ModelAndView.testSetRedis = {}", RedisUtils.getValues("userName"));
-    RedisUtils.delKey("userName");
+//    RedisUtils.delKey("userName");
     logger.debug("ModelAndView.testSetRedis = {}", RedisUtils.getValues("userName"));
   }
 
-  public static void main(String[] args) {
-
-    Integer arr[] = {1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0};
-    List list = Arrays.asList(arr);
-    Integer index = null;
-    Integer max = 0;
-/*    for (int i = 0; i < list.size(); i++) {
-      Integer nowmax = 0;
-      nowmax = add(i, list, nowmax);
-      if (nowmax > max) {
-        max = nowmax;
-        index = i;
-      }
-    }*/
-    Integer while1 = 0;
-    do {
-      Integer nowmax = 0;
-      nowmax = add(while1, list, nowmax);
-      if (nowmax > max) {
-        max = nowmax;
-        index = while1;
-      }
-      while1 = while1 + nowmax + 1;
-    } while (while1 < list.size());
-    System.out.println("index = " + index + ", max = " + max);
-  }
-
-
-  public static Integer add(Integer index, List list, Integer nowmax) {
-    if (1 == (Integer) list.get(index)) {
-      nowmax = nowmax + 1;
-      nowmax = add(index + 1, list, nowmax);
-    }
-    return nowmax;
-  }
 }
