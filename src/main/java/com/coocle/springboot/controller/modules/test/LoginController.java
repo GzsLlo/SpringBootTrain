@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +52,7 @@ public class LoginController {
     deleteRolePermission();
     addRolePermission();
     modifyRolePermission();
-    testRedis();
+//    testRedis();
 
     Map params = new HashMap();
     params.put("iccid", "iccid不存在");
