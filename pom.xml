@@ -81,12 +81,6 @@
       <groupId>io.dubbo.springboot</groupId>
       <artifactId>spring-boot-starter-dubbo</artifactId>
       <version>1.0.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>log4j</groupId>
-          <artifactId>log4j</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
 
   </dependencies>
