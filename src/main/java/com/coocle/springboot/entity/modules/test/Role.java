@@ -1,3 +1,7 @@
+/**
+ * Copyright 2018 asiainfo Inc.
+ **/
+
 package com.coocle.springboot.entity.modules.test;
 
 import lombok.AllArgsConstructor;
@@ -6,26 +10,30 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @Author:jiangchao
+ * @CreateDate:2019/3/19
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class User implements Serializable {
+public class Role {
 
   @Getter
   @Setter
-  String userName;
+  String roleCode;
 
   @Getter
   @Setter
-  String phone;
+  String roleName;
 
   @Getter
   @Setter
-  String password;
+  String roleDesc;
 
   @Getter
   @Setter
@@ -33,14 +41,22 @@ public class User implements Serializable {
 
   @Getter
   @Setter
-  String acctId;
+  Date endDate;
 
   @Getter
   @Setter
-  Province province;
+  Date updateTime;
 
   @Getter
   @Setter
-  List<Role> roles;
+  String updateUserName;
+
+  @Getter
+  @Setter
+  String roleType;
+
+  @Getter
+  @Setter
+  List<Permission> permissions;
 
 }

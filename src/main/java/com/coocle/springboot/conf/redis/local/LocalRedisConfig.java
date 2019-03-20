@@ -4,6 +4,10 @@
 
 package com.coocle.springboot.conf.redis.local;
 
+import com.coocle.springboot.utils.modules.common.SpringApplicationContext;
+import org.crazycake.shiro.RedisCacheManager;
+import org.crazycake.shiro.RedisManager;
+import org.crazycake.shiro.RedisOperator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -53,5 +57,29 @@ public class LocalRedisConfig {
     JedisCluster jedisCluster = new JedisCluster(nodes, commandTimeout, jedisPoolConfig);
     return jedisCluster;
   }
+
+  @Bean
+  public RedisOperator redisOperator() {
+    RedisOperator redisOperator = new RedisOperator();
+    redisOperator.setJedisCluster(SpringApplicationContext.getBean(JedisCluster.class));
+    return redisOperator;
+  }
+
+  @Bean
+  public RedisManager redisManager() {
+    RedisManager redisManager = new RedisManager();
+    redisManager.setJedisCluster(SpringApplicationContext.getBean(JedisCluster.class));
+    redisManager.setRedisOperator(SpringApplicationContext.getBean(RedisOperator.class));
+    redisManager.setExpire(180000);
+    return redisManager;
+  }
+
+  @Bean
+  public RedisCacheManager redisCacheManager() {
+    RedisCacheManager redisCacheManager = new RedisCacheManager();
+    redisCacheManager.setRedisManager(SpringApplicationContext.getBean(RedisManager.class));
+    return redisCacheManager;
+  }
+
 
 }

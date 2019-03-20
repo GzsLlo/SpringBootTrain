@@ -83,6 +83,33 @@
       <version>1.0.0</version>
     </dependency>
 
+    <!-- Spring Boot Shiro 依赖-->
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-spring</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>shiro-redis-cluster</groupId>
+      <artifactId>shiro-redis-cluster</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <!-- 类的get、set方法 -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.2</version>
+    </dependency>
+
+    <!-- StringUtil -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.8.1</version>
+    </dependency>
+
   </dependencies>
 
   <build>

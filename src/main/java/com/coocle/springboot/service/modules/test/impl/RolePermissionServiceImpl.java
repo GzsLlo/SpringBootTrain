@@ -1,7 +1,7 @@
 package com.coocle.springboot.service.modules.test.impl;
 
 
-import com.coocle.springboot.entity.modules.test.RolePermission;
+import com.coocle.springboot.entity.modules.test.Permission;
 import com.coocle.springboot.mapper.cen.modules.test.RolePermissionMapper;
 import com.coocle.springboot.service.modules.test.RolePermissionService;
 import org.slf4j.Logger;
@@ -29,7 +29,7 @@ public class RolePermissionServiceImpl implements RolePermissionService {
    * @return
    */
   @Override
-  public List<RolePermission> getRolePermissionByRoleCode(String roleCode) {
+  public List<Permission> getRolePermissionByRoleCode(String roleCode) {
     logger.debug("RolePermissionServiceImpl.getRolePermissionByRoleCode roleCode = {}", roleCode);
     return rolePermissionMapper.selectRolePermissionByRoleCode(roleCode);
   }
@@ -37,33 +37,33 @@ public class RolePermissionServiceImpl implements RolePermissionService {
   /**
    * 新增权限.
    *
-   * @param rolePermission
+   * @param permission
    */
   @Override
-  public void addRolePermission(RolePermission rolePermission) {
-    logger.debug("RolePermissionServiceImpl.addRolePermission rolePermission = {}", rolePermission);
-    rolePermissionMapper.insertRolePermission(rolePermission);
+  public void addRolePermission(Permission permission) {
+    logger.debug("RolePermissionServiceImpl.addRolePermission permission = {}", permission);
+    rolePermissionMapper.insertRolePermission(permission);
   }
 
   /**
    * 删除权限.
    *
-   * @param rolePermission
+   * @param permission
    */
   @Override
-  public void deleteRolePermission(RolePermission rolePermission) {
-    logger.debug("RolePermissionServiceImpl.deleteRolePermission rolePermission = {}", rolePermission);
-    rolePermissionMapper.deleteRolePermission(rolePermission);
+  public void deleteRolePermission(Permission permission) {
+    logger.debug("RolePermissionServiceImpl.deleteRolePermission permission = {}", permission);
+    rolePermissionMapper.deleteRolePermission(permission);
   }
 
   /**
    * 修改权限.
    *
-   * @param rolePermission
+   * @param permission
    */
   @Override
-  public void modifyRolePermission(RolePermission rolePermission) {
-    logger.debug("RolePermissionServiceImpl.modifyRolePermission rolePermission = {}", rolePermission);
-    rolePermissionMapper.updateRolePermission(rolePermission);
+  public void modifyRolePermission(Permission permission) {
+    logger.debug("RolePermissionServiceImpl.modifyRolePermission permission = {}", permission);
+    rolePermissionMapper.updateRolePermission(permission);
   }
 }

@@ -15,7 +15,7 @@
       <result column="PROVINCE_NAME" property="provinceName" jdbcType="VARCHAR" />
       <result column="PROVINCE_START_DATE" property="startDate" jdbcType="VARCHAR" />
     </association>
-    <collection property="rolePermissions" ofType="com.coocle.springbootentity.modules.test.RolePermission">
+    <collection property="permissions" ofType="com.coocle.springbootentity.modules.test.Permission">
       <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
       <result column="PERMISSION_CODE" property="permissionCode" jdbcType="VARCHAR" />
       <result column="PERMISSION_TYPE" property="permissionType" jdbcType="VARCHAR" />
@@ -30,7 +30,7 @@
     C.ROLE_CODE,C.PERMISSION_CODE,C.PERMISSION_TYPE,C.START_DATE PERMISSION_START_DATE,C.END_DATE
   </sql>
 
-  <select id="selectUserByUsernameAndPassword" parameterType="string" resultMap="userMapper">
+  <select id="selectUserByUsername" parameterType="string" resultMap="userMapper">
     SELECT
       <include refid="user_all_columns"/>
     FROM
@@ -54,7 +54,7 @@
                  select="com.coocle.springboot.mapper.cen.modules.test.ProvinceMapper.selectProvinceByProvinceCode"
                  column="PROVINCE_CODE">
     </association>
-    <collection property="rolePermissions" ofType="com.coocle.springboot.entity.modules.test.RolePermission"
+    <collection property="permissions" ofType="com.coocle.springboot.entity.modules.test.Permission"
                 select="com.coocle.springboot.mapper.cen.modules.test.RolePermissionMapper.selectRolePermissionByRoleCode"
                 column="USER_NAME">
     </collection>
@@ -64,7 +64,7 @@
     USER_NAME,PROVINCE_CODE,PHONE,PASSWORD,START_DATE USER_START_DATE,ACCT_ID
   </sql>
 
-  <select id="selectUserByUsernameAndPassword" parameterType="string" resultMap="userMapper">
+  <select id="selectUserByUsername" parameterType="string" resultMap="userMapper">
     SELECT
       <include refid="user_all_columns"/>
     FROM

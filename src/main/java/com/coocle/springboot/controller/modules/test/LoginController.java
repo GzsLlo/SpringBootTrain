@@ -4,7 +4,7 @@
 
 package com.coocle.springboot.controller.modules.test;
 
-import com.coocle.springboot.entity.modules.test.RolePermission;
+import com.coocle.springboot.entity.modules.test.Permission;
 import com.coocle.springboot.entity.modules.test.User;
 import com.coocle.springboot.service.modules.test.RolePermissionService;
 import com.coocle.springboot.service.modules.test.UserService;
@@ -46,7 +46,7 @@ public class LoginController {
    */
   @RequestMapping("/modules/user/login.html")
   public ModelAndView doLogin() {
-    selectUserByUsernameAndPassword();
+    selectUserByUsername();
     getUsersByAcctName();
     getRolePermissionByRoleCode();
     deleteRolePermission();
@@ -61,10 +61,10 @@ public class LoginController {
   }
 
   /**
-   * selectUserByUsernameAndPassword.
+   * selectUserByUsername.
    */
-  private void selectUserByUsernameAndPassword() {
-    User user = userService.selectUserByUsernameAndPassword("acctAdminDev");
+  private void selectUserByUsername() {
+    User user = userService.selectUserByUsername("acctAdminDev");
     logger.debug("LoginController.doLogin user = {}", user);
   }
 
@@ -89,10 +89,10 @@ public class LoginController {
    */
   private void getRolePermissionByRoleCode() {
     logger.debug("ModelAndView getRolePermissionByRoleCode");
-    List<RolePermission> rolePermissions = rolePermissionService.getRolePermissionByRoleCode("acctAdminDev");
-    if (VehicleTool.notEmpty(rolePermissions)) {
-      for (RolePermission rolePermission : rolePermissions) {
-        logger.debug("rolePermission = {}", rolePermission);
+    List<Permission> permissions = rolePermissionService.getRolePermissionByRoleCode("acctAdminDev");
+    if (VehicleTool.notEmpty(permissions)) {
+      for (Permission permission : permissions) {
+        logger.debug("permission = {}", permission);
       }
     }
   }
@@ -101,35 +101,35 @@ public class LoginController {
    * addRolePermission.
    */
   private void addRolePermission() {
-    RolePermission rolePermission = new RolePermission();
-    rolePermission.setRoleCode("coocle");
-    rolePermission.setPermissionCode("1001");
-    rolePermission.setPermissionType("1");
-    rolePermission.setStartDate(VehicleTool.string2Date(VehicleTool.getStartDate()));
-    rolePermission.setEndDate(VehicleTool.string2Date(VehicleTool.getEndDate()));
-    logger.debug("LoginController.addRolePermission rolePermission = {}", rolePermission);
-    rolePermissionService.addRolePermission(rolePermission);
+    Permission permission = new Permission();
+    permission.setRoleCode("coocle");
+    permission.setPermissionCode("1001");
+    permission.setPermissionType("1");
+    permission.setStartDate(VehicleTool.string2Date(VehicleTool.getStartDate()));
+    permission.setEndDate(VehicleTool.string2Date(VehicleTool.getEndDate()));
+    logger.debug("LoginController.addRolePermission permission = {}", permission);
+    rolePermissionService.addRolePermission(permission);
   }
 
   /**
    * deleteRolePermission.
    */
   private void deleteRolePermission() {
-    RolePermission rolePermission = new RolePermission();
-    rolePermission.setPermissionCode("1001");
-    rolePermission.setRoleCode("coocle");
-    rolePermissionService.deleteRolePermission(rolePermission);
+    Permission permission = new Permission();
+    permission.setPermissionCode("1001");
+    permission.setRoleCode("coocle");
+    rolePermissionService.deleteRolePermission(permission);
   }
 
   /**
    * modifyRolePermission.
    */
   private void modifyRolePermission() {
-    RolePermission rolePermission = new RolePermission();
-    rolePermission.setPermissionCode("1001");
-    rolePermission.setRoleCode("coocle");
-    rolePermission.setEndDate(new Date());
-    rolePermissionService.modifyRolePermission(rolePermission);
+    Permission permission = new Permission();
+    permission.setPermissionCode("1001");
+    permission.setRoleCode("coocle");
+    permission.setEndDate(new Date());
+    rolePermissionService.modifyRolePermission(permission);
   }
 
   /**

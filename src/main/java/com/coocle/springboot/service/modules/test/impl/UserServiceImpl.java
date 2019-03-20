@@ -31,9 +31,9 @@ public class UserServiceImpl implements UserService {
    */
   @Override
   @Cacheable(value = "redisCache", key = "'userInfo_' + #acctName")
-  public User selectUserByUsernameAndPassword(String acctName) {
-    logger.debug("UserServiceImpl.selectUserByUsernameAndPassword acctName = {}", acctName);
-    return userMapper.selectUserByUsernameAndPassword(acctName);
+  public User selectUserByUsername(String acctName) {
+    logger.debug("UserServiceImpl.selectUserByUsername acctName = {}", acctName);
+    return userMapper.selectUserByUsername(acctName);
   }
 
   /**

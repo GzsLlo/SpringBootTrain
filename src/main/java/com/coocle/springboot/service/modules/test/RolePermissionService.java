@@ -1,6 +1,6 @@
 package com.coocle.springboot.service.modules.test;
 
-import com.coocle.springboot.entity.modules.test.RolePermission;
+import com.coocle.springboot.entity.modules.test.Permission;
 
 import java.util.List;
 
@@ -12,27 +12,27 @@ public interface RolePermissionService {
    * @param roleCode
    * @return
    */
-  public List<RolePermission> getRolePermissionByRoleCode(String roleCode);
+  public List<Permission> getRolePermissionByRoleCode(String roleCode);
 
   /**
    * 添加权限.
    *
-   * @param rolePermission
+   * @param permission
    */
-  public void addRolePermission(RolePermission rolePermission);
+  public void addRolePermission(Permission permission);
 
   /**
    * 删除权限.
    *
-   * @param rolePermission
+   * @param permission
    */
-  public void deleteRolePermission(RolePermission rolePermission);
+  public void deleteRolePermission(Permission permission);
 
   /**
    * 修改权限.
    *
-   * @param rolePermission
+   * @param permission
    */
-  public void modifyRolePermission(RolePermission rolePermission);
+  public void modifyRolePermission(Permission permission);
 
 }

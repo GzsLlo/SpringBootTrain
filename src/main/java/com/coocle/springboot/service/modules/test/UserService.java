@@ -13,7 +13,7 @@ public interface UserService {
    * @param acctName
    * @return
    */
-  public User selectUserByUsernameAndPassword(String acctName);
+  public User selectUserByUsername(String acctName);
 
   /**
    * 根据用户名获取多个用户.

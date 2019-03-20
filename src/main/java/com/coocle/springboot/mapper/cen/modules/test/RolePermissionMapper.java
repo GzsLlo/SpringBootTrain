@@ -1,6 +1,6 @@
 package com.coocle.springboot.mapper.cen.modules.test;
 
-import com.coocle.springboot.entity.modules.test.RolePermission;
+import com.coocle.springboot.entity.modules.test.Permission;
 
 import java.util.List;
 
@@ -12,26 +12,26 @@ public interface RolePermissionMapper {
    * @param roleCode
    * @return
    */
-  public List<RolePermission> selectRolePermissionByRoleCode(String roleCode);
+  public List<Permission> selectRolePermissionByRoleCode(String roleCode);
 
   /**
    * 新增权限.
    *
-   * @param rolePermission
+   * @param permission
    */
-  public void insertRolePermission(RolePermission rolePermission);
+  public void insertRolePermission(Permission permission);
 
   /**
    * 删除权限.
    *
-   * @param rolePermission
+   * @param permission
    */
-  public void deleteRolePermission(RolePermission rolePermission);
+  public void deleteRolePermission(Permission permission);
 
   /**
    * 修改权限.
    *
-   * @param rolePermission
+   * @param permission
    */
-  public void updateRolePermission(RolePermission rolePermission);
+  public void updateRolePermission(Permission permission);
 }
