@@ -27,7 +27,7 @@ public class VehicleTool {
 
   private static Logger logger = LoggerFactory.getLogger(VehicleTool.class);
 
-  private static CommonService commonService = SpringApplicationContext.getBean(CommonService.class);
+  private static CommonService commonService = SpringContext.getBean(CommonService.class);
 
   /**
    * date2String.

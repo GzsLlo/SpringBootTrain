@@ -4,10 +4,10 @@
 
 package com.coocle.springboot.conf.redis.local;
 
-import com.coocle.springboot.utils.modules.common.SpringApplicationContext;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisOperator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -31,17 +31,30 @@ public class LocalRedisConfig {
 
   @Value("${local-redis.nodes}")
   private String clusterNodes;
+
   @Value("${local-redis.timeout}")
   private int timeout;
+
   @Value("${local-redis.pool.max-idle}")
   private int maxIdle;
+
   @Value("${local-redis.pool.max-wait}")
   private long maxWaitMillis;
+
   @Value("${local-redis.commandTimeout}")
   private int commandTimeout;
 
+  @Autowired
+  private JedisCluster jedisCluster;
+
+  @Autowired
+  private RedisOperator redisOperator;
+
+  @Autowired
+  private RedisManager redisManager;
+
   @Bean
-  public JedisCluster getJedisCluster() {
+  public JedisCluster jedisCluster() {
     String[] cNodes = clusterNodes.split(",");
     Set<HostAndPort> nodes = new HashSet();
     // 分割出集群节点
@@ -61,15 +74,15 @@ public class LocalRedisConfig {
   @Bean
   public RedisOperator redisOperator() {
     RedisOperator redisOperator = new RedisOperator();
-    redisOperator.setJedisCluster(SpringApplicationContext.getBean(JedisCluster.class));
+    redisOperator.setJedisCluster(jedisCluster);
     return redisOperator;
   }
 
   @Bean
   public RedisManager redisManager() {
     RedisManager redisManager = new RedisManager();
-    redisManager.setJedisCluster(SpringApplicationContext.getBean(JedisCluster.class));
-    redisManager.setRedisOperator(SpringApplicationContext.getBean(RedisOperator.class));
+    redisManager.setJedisCluster(jedisCluster);
+    redisManager.setRedisOperator(redisOperator);
     redisManager.setExpire(180000);
     return redisManager;
   }
@@ -77,7 +90,7 @@ public class LocalRedisConfig {
   @Bean
   public RedisCacheManager redisCacheManager() {
     RedisCacheManager redisCacheManager = new RedisCacheManager();
-    redisCacheManager.setRedisManager(SpringApplicationContext.getBean(RedisManager.class));
+    redisCacheManager.setRedisManager(redisManager);
     return redisCacheManager;
   }
 

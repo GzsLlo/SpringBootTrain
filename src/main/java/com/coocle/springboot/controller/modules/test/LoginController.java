@@ -101,35 +101,35 @@ public class LoginController {
    * addRolePermission.
    */
   private void addRolePermission() {
-    Permission permission = new Permission();
-    permission.setRoleCode("coocle");
-    permission.setPermissionCode("1001");
-    permission.setPermissionType("1");
-    permission.setStartDate(VehicleTool.string2Date(VehicleTool.getStartDate()));
-    permission.setEndDate(VehicleTool.string2Date(VehicleTool.getEndDate()));
-    logger.debug("LoginController.addRolePermission permission = {}", permission);
-    rolePermissionService.addRolePermission(permission);
+//    Permission permission = new Permission();
+//    permission.setRoleCode("coocle");
+//    permission.setPermissionCode("1001");
+//    permission.setPermissionType("1");
+//    permission.setStartDate(VehicleTool.string2Date(VehicleTool.getStartDate()));
+//    permission.setEndDate(VehicleTool.string2Date(VehicleTool.getEndDate()));
+//    logger.debug("LoginController.addRolePermission permission = {}", permission);
+//    rolePermissionService.addRolePermission(permission);
   }
 
   /**
    * deleteRolePermission.
    */
   private void deleteRolePermission() {
-    Permission permission = new Permission();
-    permission.setPermissionCode("1001");
-    permission.setRoleCode("coocle");
-    rolePermissionService.deleteRolePermission(permission);
+//    Permission permission = new Permission();
+//    permission.setPermissionCode("1001");
+//    permission.setRoleCode("coocle");
+//    rolePermissionService.deleteRolePermission(permission);
   }
 
   /**
    * modifyRolePermission.
    */
   private void modifyRolePermission() {
-    Permission permission = new Permission();
-    permission.setPermissionCode("1001");
-    permission.setRoleCode("coocle");
-    permission.setEndDate(new Date());
-    rolePermissionService.modifyRolePermission(permission);
+//    Permission permission = new Permission();
+//    permission.setPermissionCode("1001");
+//    permission.setRoleCode("coocle");
+//    permission.setEndDate(new Date());
+//    rolePermissionService.modifyRolePermission(permission);
   }
 
   /**

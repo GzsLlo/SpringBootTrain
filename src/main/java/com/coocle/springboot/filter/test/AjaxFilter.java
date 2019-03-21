@@ -1,7 +1,7 @@
 /**
  * Copyright 2017 asiainfo Inc.
  **/
-package com.coocle.springboot.conf.shiro;
+package com.coocle.springboot.filter.test;
 
 import org.apache.shiro.web.servlet.AdviceFilter;
 import org.slf4j.Logger;

@@ -6,16 +6,17 @@ package com.coocle.springboot.conf.shiro;
 
 import com.coocle.springboot.filter.test.FormAuthenticationFilter;
 import com.coocle.springboot.filter.test.LogoutFilter;
-import com.coocle.springboot.utils.modules.common.SpringApplicationContext;
+import org.apache.shiro.cache.CacheManager;
+import org.apache.shiro.mgt.RememberMeManager;
+import org.apache.shiro.realm.Realm;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.crazycake.shiro.RedisCacheManager;
-import org.crazycake.shiro.RedisManager;
-import org.crazycake.shiro.RedisOperator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.apache.shiro.mgt.SecurityManager;
-import redis.clients.jedis.JedisCluster;
+import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
 import java.util.HashMap;
@@ -25,28 +26,31 @@ import java.util.Map;
  * @Author:jiangchao
  * @CreateDate:2019/3/19
  */
+@Configuration
 public class ShiroConfig {
 
-  /**
-   * 将自己的验证方式加入容器.
-   *
-   * @return
-   */
-  @Bean
-  public ShiroRealm shiroRealm() {
-    return new ShiroRealm();
-  }
+  @Autowired
+  private Realm userRealm;
+
+  @Autowired
+  private CacheManager redisCacheManager;
+
+  @Autowired
+  private SessionManager defaultWebSessionManager;
+
+  @Autowired
+  private RememberMeManager cookieRememberMeManager;
 
   /**
    * 权限管理，配置主要是Realm的管理认证.
    */
   @Bean
   public SecurityManager securityManager() {
-
     DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-    securityManager.setRealm(shiroRealm());
-    securityManager.setCacheManager(SpringApplicationContext.getBean(RedisCacheManager.class));
-//    securityManager.setSessionManager();
+    securityManager.setRealm(userRealm);
+    securityManager.setCacheManager(redisCacheManager);
+    securityManager.setSessionManager(defaultWebSessionManager);
+    securityManager.setRememberMeManager(cookieRememberMeManager);
     return securityManager;
   }
 

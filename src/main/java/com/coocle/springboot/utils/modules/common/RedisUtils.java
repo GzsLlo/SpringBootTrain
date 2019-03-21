@@ -17,7 +17,7 @@ public class RedisUtils {
   private static JedisCluster jedisCluster;
 
   static {
-    jedisCluster = SpringApplicationContext.getBean(JedisCluster.class);
+    jedisCluster = SpringContext.getBean(JedisCluster.class);
   }
 
   /**

@@ -14,16 +14,29 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @Author:jiangchao
  * @CreateDate:2019/3/19
  */
-public class ShiroRealm extends AuthorizingRealm {
+@Configuration
+public class UserRealm extends AuthorizingRealm {
+
+  private final Logger logger = LoggerFactory.getLogger(getClass());
 
   @Autowired
   private UserService userService;
+
+  @Bean
+  public UserRealm shiroRealm() {
+    UserRealm userRealm = new UserRealm();
+    return userRealm;
+  }
 
   /**
    * 角色权限和对应权限添加.
@@ -38,7 +51,7 @@ public class ShiroRealm extends AuthorizingRealm {
     //添加角色和权限
     SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 
-     return simpleAuthorizationInfo;
+    return simpleAuthorizationInfo;
   }
 
   /**
